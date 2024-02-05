@@ -14,7 +14,9 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::all();
+
+        return view("admin.tags.index", compact("tags"));
     }
 
     /**
@@ -22,7 +24,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.tags.create");
     }
 
     /**
@@ -30,7 +32,13 @@ class TagController extends Controller
      */
     public function store(StoreTagRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $new_tag = new Tag();
+        $new_tag->fill($validated);
+        $new_tag->save();
+
+        return redirect()->route("admin.tags.index");
     }
 
     /**
@@ -38,7 +46,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        return view("admin.tags.show", compact("tag"));
     }
 
     /**
@@ -46,7 +54,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return view("admin.tags.edit", compact("tag"));
     }
 
     /**
@@ -54,7 +62,12 @@ class TagController extends Controller
      */
     public function update(UpdateTagRequest $request, Tag $tag)
     {
-        //
+        $validated_tag = $request->validated();
+
+        $tag->fill($validated_tag);
+        $tag->save();
+
+        return redirect()->route("admin.tags.index");
     }
 
     /**
@@ -62,6 +75,8 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+
+        return redirect()->route("admin.tags.index");
     }
 }

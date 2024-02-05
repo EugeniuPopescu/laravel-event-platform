@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController; //<---- Import del controller precedentemente creato!
 use App\Http\Controllers\Admin\EventController; //<---- Import del controller
+use App\Http\Controllers\Admin\TagController;
 
 /* ... */
 
@@ -22,6 +23,8 @@ Route::middleware(['auth'])
 
         // Admin Post CRUD
         Route::resource('events', EventController::class);
+
+        Route::resource("tags", TagController::class);
     });
 
 require __DIR__ . '/auth.php';
