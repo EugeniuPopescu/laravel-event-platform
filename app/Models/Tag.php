@@ -14,8 +14,8 @@ class Tag extends Model
         "link"
     ];
 
-    // public function portfolios()
-    // {
-    //     return $this->belongsToMany(Portfolio::class);
-    // }
+    public function events()
+    {
+        return $this->belongsToMany(Event::class);
+    }
 }

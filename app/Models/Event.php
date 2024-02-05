@@ -22,8 +22,8 @@ class Event extends Model
         return $this->belongsTo(User::class);
     }
 
-    // public function tags()
-    // {
-    //     return $this->belongsTo(Tag::class);
-    // }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }
