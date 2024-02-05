@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
+use App\Models\Tag;
 
 class EventController extends Controller
 {
@@ -14,7 +15,10 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view("admin.events.index");
+        $events = Event::all();
+        $tags = Tag::all();
+
+        return view("admin.events.index", compact("events", "tags"));
     }
 
     /**
@@ -22,7 +26,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        $tags = Tag::all();
+
+        return view("admin.events.create", compact('tags'));
     }
 
     /**
@@ -30,7 +36,19 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $new_event = new Event();
+        $new_event->fill($validated);
+        $new_event->save();
+
+        // relazione portfolio tag
+        if ($request->tags) {
+            $new_event->tags()->attach($request->tags);
+        }
+
+
+        return redirect()->route("admin.events.index");
     }
 
     /**
@@ -38,7 +56,9 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        $tag = Tag::all();
+
+        return view("admin.events.show", compact('event', 'tag'));
     }
 
     /**
@@ -46,7 +66,9 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        $tags = Tag::all();
+
+        return view("admin.events.edit", compact('event', 'tags'));
     }
 
     /**
@@ -54,7 +76,14 @@ class EventController extends Controller
      */
     public function update(UpdateEventRequest $request, Event $event)
     {
-        //
+        $validated_data = $request->validated();
+
+        $event->fill($validated_data);
+        $event->update();
+
+        // ddd($data);
+
+        return redirect()->route("admin.events.index");
     }
 
     /**
@@ -62,6 +91,8 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        $event->delete();
+
+        return redirect()->route("admin.events.index");
     }
 }
