@@ -22,7 +22,9 @@ class UpdateEventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name" => "required",
+            "date" => "required",
+            "available_tickets" => "required",
         ];
     }
 }
