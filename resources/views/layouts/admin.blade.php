@@ -65,7 +65,7 @@
                             {{-- tag create --}}
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.tags.create' ? 'bg-secondary' : '' }}" href="{{route('admin.tags.create')}}">
-                                    <i class="fa-solid fa-plus fa-lg fa-fw"></i> Create Tag
+                                    <i class="fa-solid fa-plus fa-lg fa-fw"></i> Add Tag
                                 </a>
                             </li>
 
