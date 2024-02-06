@@ -83,6 +83,11 @@ class EventController extends Controller
 
         // ddd($data);
 
+        // se arriva una stringa vuota, non viene considerata -> HAS
+        if ($request->has("tags")) {
+            $event->tags()->sync($request->tags);
+        }
+
         return redirect()->route("admin.events.index");
     }
 
