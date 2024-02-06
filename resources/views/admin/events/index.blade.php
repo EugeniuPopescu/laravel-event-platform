@@ -28,7 +28,7 @@
                                 @if (count($event->tags) > 0)
                                     <ul>
                                         @foreach ($event->tags as $tag)
-                                            <li>#{{ $tag->name }}</li>
+                                            <li> #{{ $tag->name }}</li>
                                         @endforeach
                                     </ul>
                                 @else

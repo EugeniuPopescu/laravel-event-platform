@@ -1,1 +1,14 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+
+ul {
+    list-style: none;
+    display: flex;
+    padding-inline-start: 0;
+}
+
+.fixed {
+    position: fixed;
+    height: 100%;
+    padding-left: 0;
+}
+
