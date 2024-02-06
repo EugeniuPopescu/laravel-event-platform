@@ -25,6 +25,7 @@ class StoreEventRequest extends FormRequest
             "name" => "required",
             "date" => "required",
             "available_tickets" => "required",
+            "tags" => [],
         ];
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -37,6 +38,7 @@ class EventController extends Controller
     public function store(StoreEventRequest $request)
     {
         $validated = $request->validated();
+        $validated["user_id"] = Auth::id();
 
         $new_event = new Event();
         $new_event->fill($validated);
@@ -44,6 +46,7 @@ class EventController extends Controller
 
         // relazione portfolio tag
         if ($request->tags) {
+            // 
             $new_event->tags()->attach($request->tags);
         }
 
@@ -81,14 +84,18 @@ class EventController extends Controller
         $event->fill($validated_data);
         $event->update();
 
-        // ddd($data);
+        // ddd($event);
 
-        // se arriva una stringa vuota, non viene considerata -> HAS
-        if ($request->has("tags")) {
-            $event->tags()->sync($request->tags);
+        // var_dump($request->filled("tags"));
+        // var_dump($validated_data["tags"]);
+
+        if ($request->filled("tags")) {
+            $validated_data["tags"] = array_filter($validated_data["tags"]) ? $validated_data["tags"] : [];
+            $event->tags()->sync($validated_data["tags"]);
         }
 
         return redirect()->route("admin.events.index");
+        // return "ok";
     }
 
     /**
