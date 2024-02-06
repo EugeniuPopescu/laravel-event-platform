@@ -3,26 +3,26 @@
 return [
     [
         "name" => "dev",
-        "link" => "https://www.link1.com"
+        "link" => "dev"
     ],
     [
         "name" => "dance",
-        "link" => "https://www.link2.com"
+        "link" => "dance"
     ],
     [
         "name" => "workout",
-        "link" => "https://www.link3.com"
+        "link" => "workout"
     ],
     [
         "name" => "crypto",
-        "link" => "https://www.link4.com"
+        "link" => "crypto"
     ],
     [
         "name" => "besame",
-        "link" => "https://www.link5.com"
+        "link" => "besame"
     ],
     [
         "name" => "shibainu",
-        "link" => "https://www.link6.com"
+        "link" => "shibainu"
     ],
 ];
