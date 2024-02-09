@@ -10,7 +10,7 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::with("user")->get();
+        $events = Event::with("user", "tags")->get();
 
         return response()->json([
             "success" => true,
