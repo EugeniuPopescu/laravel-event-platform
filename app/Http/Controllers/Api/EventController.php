@@ -21,7 +21,7 @@ class EventController extends Controller
     // metodo show che usa il success true/false
     public function show($id)
     {
-        $events = Event::with("user")->find($id);
+        $events = Event::with("user", "tags")->find($id);
 
         // STESSO LAVORO, MA CON DIVERSI MODI
 
