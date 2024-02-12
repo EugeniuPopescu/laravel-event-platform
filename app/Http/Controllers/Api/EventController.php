@@ -10,7 +10,7 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::with("user", "tags")->get();
+        $events = Event::with("user")->get();
 
         return response()->json([
             "success" => true,
@@ -21,7 +21,7 @@ class EventController extends Controller
     // metodo show che usa il success true/false
     public function show($id)
     {
-        $events = Event::with("user", "tags")->find($id);
+        $events = Event::with("user", "tags:name")->find($id);
 
         // STESSO LAVORO, MA CON DIVERSI MODI
 
